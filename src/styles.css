@@ -11,3 +11,11 @@ body {
 footer {
   margin-top: 30px;
 }
+
+.selected {
+  background-color: moccasin;
+}
+
+a {
+  cursor: pointer;
+}

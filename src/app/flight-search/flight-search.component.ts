@@ -4,13 +4,20 @@ import { HttpClient } from '@angular/common/http';
 import { Flight } from '../model/flight';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from './flight.service';
+import { DummyFlightService } from './dummy-flight.service';
 
 @Component({
   selector: 'app-flight-search',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css'],
+  /* providers: [
+    {
+      provide: FlightService,
+      useClass: DummyFlightService,
+    }
+  ] */
 })
 export class FlightSearchComponent {
   from = 'Hamburg';

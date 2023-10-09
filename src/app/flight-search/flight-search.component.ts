@@ -1,14 +1,14 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Flight } from '../model/flight';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Flight } from '../model/flight';
+import { CityPipe } from '../shared/city.pipe';
 import { FlightService } from './flight.service';
 
 @Component({
   selector: 'app-flight-search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CityPipe],
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css']
 })

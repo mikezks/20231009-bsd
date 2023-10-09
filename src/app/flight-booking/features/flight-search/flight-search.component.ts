@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Flight } from '../model/flight';
-import { CityPipe } from '../shared/city.pipe';
-import { FlightService } from './flight.service';
-import { FlightCardComponent } from '../flight-card/flight-card.component';
+import { Flight } from '../../../model/flight';
+import { CityPipe } from '../../../shared/pipes/city.pipe';
+import { FlightService } from '../../data-access/flight.service';
+import { FlightCardComponent } from '../../ui/flight-card/flight-card.component';
 
 @Component({
   selector: 'app-flight-search',

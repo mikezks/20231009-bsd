@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Flight } from '../model/flight';
-import { ValidationErrorsComponent } from '../shared/validation-errors/validation-errors.component';
+import { Flight } from '../../../model/flight';
+import { ValidationErrorsComponent } from '../../../shared/validation/validation-errors/validation-errors.component';
 
 @Component({
   selector: 'app-flight-edit',

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NextFlightsService } from './next-flights.service';
+import { NextFlightsService } from '../../data-access/next-flights.service';
 
 @Component({
   selector: 'app-next-flights',

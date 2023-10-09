@@ -1,0 +1,18 @@
+<div class="card" [ngClass]="{ selected: selected }">
+  <div class="card-header">
+    <h2 class="card-title">
+      {{ item.from | city : "short" }} - {{ item.to | city : "long" }}
+    </h2>
+  </div>
+
+  <div class="card-body">
+    <p>Flight-No.: {{ item.id }}</p>
+    <p>Date: {{ item.date | date : "dd.MM.yyyy HH:mm" }}</p>
+    <p [ngStyle]="{ color: item.delayed }">Delayed: {{ item.delayed }}</p>
+    <p>
+      <button (click)="toggleSelection()" class="btn btn-default">
+        {{ selected ? "Remove" : "Select" }}
+      </button>
+    </p>
+  </div>
+</div>

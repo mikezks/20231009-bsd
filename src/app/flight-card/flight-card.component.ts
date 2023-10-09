@@ -27,6 +27,8 @@ export class FlightCardComponent {
   edit() {
     this.dialog.open(FlightEditComponent, {
       data: { flight: { ...this.item } },
+      minWidth: '70%',
+      panelClass: 'form-dialog'
     });
   }
 }

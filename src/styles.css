@@ -28,3 +28,11 @@ a {
 .edit-checkbox {
   margin-right: 4px;
 }
+
+input.ng-dirty.ng-invalid {
+  border-left: darkred 5px solid;
+}
+
+input.ng-dirty.ng-valid {
+  border-left: darkgreen 5px solid;
+}

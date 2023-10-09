@@ -1,37 +1,35 @@
 <div class="card">
   <div class="card-header">
-    <h2 class="card-title">Flight Edit</h2>
+    <h2 class="card-title">Flight Edit Reactive</h2>
   </div>
 
   <mat-dialog-content>
     <div class="card-body">
-      <form #form="ngForm">
-        <app-validation-errors
-          [errors]="form?.controls?.['from']?.errors ?? {}"
-          field="from"
-        />
-
-        <div class="form-group">
-          <input name="id" [(ngModel)]="flight.id" class="form-control" />
+      <form [formGroup]="form">
+        <div class="alert alert-danger" *ngIf="!form.controls.from.valid">
+          {{ form.controls.from.errors | json }}
         </div>
 
         <div class="form-group">
-          <input name="from" [(ngModel)]="flight.from" required minlength="3" class="form-control" />
+          <input formControlName="id" class="form-control" />
         </div>
 
         <div class="form-group">
-          <input name="to" [(ngModel)]="flight.to" class="form-control" />
+          <input formControlName="from" class="form-control" />
         </div>
 
         <div class="form-group">
-          <input name="date" [(ngModel)]="flight.date" class="form-control" />
+          <input formControlName="to" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input formControlName="date" class="form-control" />
         </div>
 
         <div class="form-group">
           <input
-            name="delayed"
+            formControlName="delayed"
             id="delayed"
-            [(ngModel)]="flight.delayed"
             type="checkbox"
             class="form-checkbox"
           />
@@ -39,6 +37,7 @@
         </div>
 
         <div class="form-group">
+          <button (click)="save()" class="btn btn-default">Save</button>
           <button (click)="close()" class="btn btn-default">Close</button>
         </div>
       </form>

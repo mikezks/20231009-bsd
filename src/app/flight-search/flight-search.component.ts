@@ -19,19 +19,9 @@ export class FlightSearchComponent {
   selectedFlight: Flight | undefined;
 
   private flightService = inject(FlightService);
+  // constructor(private flightService: FlightService) {}
 
   search(): void {
-    const url = 'https://demo.angulararchitects.io/api/flight';
-
-    const headers = {
-      Accept: 'application/json',
-    };
-
-    const params = {
-      from: this.from,
-      to: this.to,
-    };
-
     this.flightService.find(this.from, this.to).subscribe({
       next: (flights) => {
         this.flights = flights;

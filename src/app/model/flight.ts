@@ -6,3 +6,10 @@ export interface Flight {
   delayed: boolean;
 }
 
+export const initialFlight: Flight = {
+  id: 0,
+  from: '',
+  to: '',
+  date: '',
+  delayed: false
+}

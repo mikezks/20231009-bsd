@@ -31,7 +31,10 @@
       [item]="flight"
       [selected]="basket[flight.id]"
       (selectedChange)="basket[flight.id] = $event"
-    />
+    >
+      <h5 class="sub-title">This flight is delayed!</h5>
+      <p class="content-bottom">This flight is overbooked - please chose another one!</p>
+    </app-flight-card>
 
   </div>
 </div>
@@ -41,3 +44,9 @@
     <pre>{{ basket | json }}</pre>
   </div>
 </div>
+
+<ng-template #HelloWorldTemplate>
+  <div>
+    <p>Hello World!</p>
+  </div>
+</ng-template>

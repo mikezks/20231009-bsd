@@ -6,12 +6,15 @@
     <h2 class="card-title">
       {{ item.from }} - {{ item.to }}
     </h2>
+    <ng-content select=".sub-title"></ng-content>
   </div>
 
   <div class="card-body">
+    <ng-content select=".content-top"></ng-content>
     <p>Flight No.: {{ item.id }}</p>
     <p>Date: {{ item.date }}</p>
     <p>Delayed: {{ item.delayed }}</p>
+    <ng-content></ng-content>
     <p>
       <button
         (click)="toggleSelection()"

@@ -1,3 +1,4 @@
+import { FlightEditReactiveComponent } from './../flight-edit-reactive/flight-edit-reactive.component';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { initFlight } from '../model/flight';
@@ -25,7 +26,7 @@ export class FlightCardComponent {
   }
 
   edit() {
-    this.dialog.open(FlightEditComponent, {
+    this.dialog.open(FlightEditReactiveComponent, {
       data: { flight: { ...this.item } },
       minWidth: '70%',
       panelClass: 'form-dialog'

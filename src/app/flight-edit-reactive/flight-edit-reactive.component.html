@@ -1,0 +1,48 @@
+<div class="card p40">
+  <div class="card-header">
+    <h2 class="card-title">Flight Edit Reactive</h2>
+  </div>
+
+  <mat-dialog-content>
+    <div class="card-body">
+      <form [formGroup]="editForm">
+        <app-validation-errors
+          [errors]="editForm.controls.from.errors ?? {}"
+          field="from"
+        />
+
+        <div class="form-group">
+          <input name="id" formControlName="id" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input name="from" formControlName="from"  required minlength="3" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input name="to" formControlName="to"  class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input name="date" formControlName="date"  class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <input
+            name="delayed"
+            id="delayed"
+            formControlName="delayed"
+            type="checkbox"
+            class="form-checkbox"
+          />
+          <label for="delayed">Delayed</label>
+        </div>
+
+        <div class="form-group">
+          <button (click)="save()" [disabled]="!editForm.valid" class="btn btn-default">Save</button>
+          <button (click)="close()" class="btn btn-default">Close</button>
+        </div>
+      </form>
+    </div>
+  </mat-dialog-content>
+</div>

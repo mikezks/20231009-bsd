@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Flight } from '../model/flight';
 import { ValidationErrorsComponent } from "../shared/validation-errors/validation-errors.component";
 
@@ -26,7 +26,10 @@ export class FlightEditReactiveComponent {
 
   protected editForm = this.fb.nonNullable.group({
     id: [0],
-    from: [''],
+    from: ['', [
+      Validators.required,
+      Validators.minLength(5)
+    ]],
     to: [''],
     date: [''],
     delayed: [false]

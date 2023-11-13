@@ -8,6 +8,12 @@
   characters.
 </div>
 
+<div *ngIf="errors['city']" class="alert alert-danger">
+  The entered city is not allowed.<br>
+  Please enter one of the following cities:<br>
+  {{ errors['city']['validCities'].join(', ') }}
+</div>
+
 <div *ngIf="hasErrors" class="alert alert-danger">
   Internal error object: {{ errors | json }}
 </div>

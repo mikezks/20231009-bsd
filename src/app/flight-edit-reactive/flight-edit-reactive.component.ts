@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Flight } from '../model/flight';
 import { ValidationErrorsComponent } from "../shared/validation-errors/validation-errors.component";
+import { validateCity, validateCityWithParams } from '../shared/validators/city-validator';
 
 @Component({
     selector: 'app-flight-edit-reactive',
@@ -28,9 +29,16 @@ export class FlightEditReactiveComponent {
     id: [0],
     from: ['', [
       Validators.required,
-      Validators.minLength(5)
+      Validators.minLength(3),
+      validateCity
     ]],
-    to: [''],
+    to: ['', [
+      Validators.required,
+      Validators.minLength(3),
+      validateCityWithParams([
+        'Graz', 'Berlin', 'London'
+      ])
+    ]],
     date: [''],
     delayed: [false]
   });

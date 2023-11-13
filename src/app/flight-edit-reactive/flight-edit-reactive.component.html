@@ -6,11 +6,6 @@
   <mat-dialog-content>
     <div class="card-body">
       <form [formGroup]="editForm">
-        <app-validation-errors
-          [errors]="editForm.controls.from.errors ?? {}"
-          field="from"
-        />
-
         <div class="form-group">
           <input name="id" formControlName="id" class="form-control" />
         </div>
@@ -18,10 +13,18 @@
         <div class="form-group">
           <input name="from" formControlName="from"  required minlength="3" class="form-control" />
         </div>
+        <app-validation-errors
+          [errors]="editForm.controls.from.errors ?? {}"
+          field="from"
+        />
 
         <div class="form-group">
           <input name="to" formControlName="to"  class="form-control" />
         </div>
+        <app-validation-errors
+          [errors]="editForm.controls.to.errors ?? {}"
+          field="to"
+        />
 
         <div class="form-group">
           <input name="date" formControlName="date"  class="form-control" />

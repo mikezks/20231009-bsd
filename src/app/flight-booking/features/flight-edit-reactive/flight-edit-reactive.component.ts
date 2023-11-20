@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, Input, effect, inject, numberAttribute, signal, untracked } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FlightService } from '../../data-access/flight.service';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Flight, initFlight } from 'src/app/model/flight';
+import { FlightService } from '../../data-access/flight.service';
 
 export const resolveFlights = (route: ActivatedRouteSnapshot): Observable<Flight> => {
   return inject(FlightService).findById(+(route.paramMap.get('id') ?? 0));
@@ -23,17 +23,15 @@ export const flightsResolverConfig = {
 })
 export class FlightEditReactiveComponent {
   private fb = inject(FormBuilder);
-  private flightService = inject(FlightService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
+  @Input() showDetails = false;
   protected id = signal(0);
   @Input({ alias: 'id', transform: numberAttribute })
   private set signalIdSetter(id: number) {
     this.id.set(id);
   }
-  @Input() showDetails = false;
-
   protected flight = signal<Flight>(initFlight);
   @Input({ alias: 'flight'})
   private set signalFlightSetter(flight: Flight) {
@@ -52,16 +50,7 @@ export class FlightEditReactiveComponent {
     effect(() => this.form.patchValue(this.flight()));
     effect(() => {
       const id = this.id();
-      const shallLoad = id !== this.form.controls.id.value;
-      shallLoad && untracked(() => this.switchFlight(id));
-    });
-
-    this.form.valueChanges.subscribe((flightForm) => {
-      console.log('flight form changed:', flightForm);
-    });
-
-    this.form.controls.from.valueChanges.subscribe((from) => {
-      console.log('from changed:', from);
+      untracked(() => this.switchFlight(id));
     });
   }
 
@@ -69,13 +58,9 @@ export class FlightEditReactiveComponent {
     console.log('flight', this.form.getRawValue());
   }
 
-  load(id: number): void {
-    this.flightService.findById(id).subscribe(
-      flight => this.form.patchValue(flight)
-    );
-  }
-
   switchFlight(id: number) {
-    this.router.navigate(['../', id], { relativeTo: this.route });
+    if (id !== this.form.controls.id.value) {
+      this.router.navigate(['../', id], { relativeTo: this.route });
+    }
   }
 }

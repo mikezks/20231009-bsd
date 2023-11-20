@@ -37,7 +37,9 @@
       </div>
 
       <div class="form-group">
+        <button (click)="id.set(id()-1)" class="btn btn-default">Previous Flight</button>
         <button (click)="save()" class="btn btn-default">Save</button>
+        <button (click)="id.set(id()+1)" class="btn btn-default">Next Flight</button>
       </div>
     </form>
   </div>

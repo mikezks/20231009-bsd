@@ -1,3 +1,5 @@
+import { effect } from '@angular/core';
+import { signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component, Input, inject, numberAttribute } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,14 +18,10 @@ export class FlightEditReactiveComponent {
   private fb = inject(FormBuilder);
   private flightService = inject(FlightService);
 
-  private _id = 0;
-  @Input({ transform: numberAttribute })
-  set id(routeId: number) {
-    this._id = routeId;
-    this.load(this._id);
-  }
-  get id() {
-    return this._id;
+  private id = signal(0);
+  @Input({ alias: 'id', transform: numberAttribute})
+  private set signalIdSetter(id: number) {
+    this.id.set(id);
   }
   @Input() showDetails = false;
 
@@ -39,6 +37,8 @@ export class FlightEditReactiveComponent {
 
   constructor() {
     this.form.patchValue(this.flight);
+
+    effect(() => this.load(this.id()));
 
     this.form.valueChanges.subscribe((flightForm) => {
       console.log('flight form changed:', flightForm);

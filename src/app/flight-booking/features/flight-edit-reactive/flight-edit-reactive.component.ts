@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject, numberAttribute } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { FlightService } from '../../data-access/flight.service';
+import { initFlight } from 'src/app/model/flight';
 
 @Component({
   selector: 'app-flight-edit-reactive',
@@ -12,15 +14,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FlightEditReactiveComponent {
   private fb = inject(FormBuilder);
-  private route = inject(ActivatedRoute);
-  protected flight = {
-    id: 999,
-    from: 'Rom',
-    to: 'Oslo',
-    date: '',
-    delayed: true
-  };
-  protected showDetails = false;
+  private flightService = inject(FlightService);
+
+  private _id = 0;
+  @Input({ transform: numberAttribute })
+  set id(routeId: number) {
+    this._id = routeId;
+    this.load(this._id);
+  }
+  get id() {
+    return this._id;
+  }
+  @Input() showDetails = false;
+
+  protected flight = initFlight;
 
   form = this.fb.nonNullable.group({
     id: [0],
@@ -32,13 +39,6 @@ export class FlightEditReactiveComponent {
 
   constructor() {
     this.form.patchValue(this.flight);
-
-    this.route.paramMap.subscribe(params => {
-      this.form.patchValue({
-        id: +(params.get('id') || 0)
-      });
-      this.showDetails = params.get('showDetails') === 'true';
-    });
 
     this.form.valueChanges.subscribe((flightForm) => {
       console.log('flight form changed:', flightForm);
@@ -52,5 +52,11 @@ export class FlightEditReactiveComponent {
   save(): void {
     this.flight = this.form.getRawValue();
     console.log('flight', this.flight);
+  }
+
+  load(id: number): void {
+    this.flightService.findById(id).subscribe(
+      flight => this.form.patchValue(flight)
+    );
   }
 }

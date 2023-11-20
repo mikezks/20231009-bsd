@@ -3,7 +3,7 @@ import { FlightEditReactiveComponent } from "./features/flight-edit-reactive/fli
 import { FlightSearchComponent } from "./features/flight-search/flight-search.component";
 import { PassengerSearchComponent } from "./features/passenger-search/passenger-search.component";
 
-export const FLIGHT_BOOKING_ROUTES: Routes = [
+const FLIGHT_BOOKING_ROUTES: Routes = [
   {
     path: '',
     children: [
@@ -27,3 +27,5 @@ export const FLIGHT_BOOKING_ROUTES: Routes = [
     ]
   }
 ];
+
+export default FLIGHT_BOOKING_ROUTES;

@@ -3,44 +3,42 @@
     <h2 class="card-title">Flight Edit Reactive</h2>
   </div>
 
-  <mat-dialog-content>
-    <div class="card-body">
-      <form [formGroup]="form">
-        <div class="alert alert-danger" *ngIf="!form.controls.from.valid">
-          {{ form.controls.from.errors | json }}
-        </div>
+  <div class="card-body">
+    <p>Show Details: {{ showDetails }}</p>
+    <form [formGroup]="form">
+      <div class="alert alert-danger" *ngIf="!form.controls.from.valid">
+        {{ form.controls.from.errors | json }}
+      </div>
 
-        <div class="form-group">
-          <input formControlName="id" class="form-control" />
-        </div>
+      <div class="form-group">
+        <input formControlName="id" class="form-control" />
+      </div>
 
-        <div class="form-group">
-          <input formControlName="from" class="form-control" />
-        </div>
+      <div class="form-group">
+        <input formControlName="from" class="form-control" />
+      </div>
 
-        <div class="form-group">
-          <input formControlName="to" class="form-control" />
-        </div>
+      <div class="form-group">
+        <input formControlName="to" class="form-control" />
+      </div>
 
-        <div class="form-group">
-          <input formControlName="date" class="form-control" />
-        </div>
+      <div class="form-group">
+        <input formControlName="date" class="form-control" />
+      </div>
 
-        <div class="form-group">
-          <input
-            formControlName="delayed"
-            id="delayed"
-            type="checkbox"
-            class="form-checkbox"
-          />
-          <label for="delayed">Delayed</label>
-        </div>
+      <div class="form-group">
+        <input
+          formControlName="delayed"
+          id="delayed"
+          type="checkbox"
+          class="form-checkbox"
+        />
+        <label for="delayed">Delayed</label>
+      </div>
 
-        <div class="form-group">
-          <button (click)="save()" class="btn btn-default">Save</button>
-          <button (click)="close()" class="btn btn-default">Close</button>
-        </div>
-      </form>
-    </div>
-  </mat-dialog-content>
+      <div class="form-group">
+        <button (click)="save()" class="btn btn-default">Save</button>
+      </div>
+    </form>
+  </div>
 </div>

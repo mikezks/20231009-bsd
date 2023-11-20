@@ -5,11 +5,12 @@ import { CityPipe } from '../../../shared/pipes/city.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { FlightEditComponent } from '../../features/flight-edit/flight-edit.component';
 import { FlightEditReactiveComponent } from '../../features/flight-edit-reactive/flight-edit-reactive.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-flight-card',
   standalone: true,
-  imports: [CommonModule, CityPipe],
+  imports: [CommonModule, CityPipe, RouterLink],
   templateUrl: './flight-card.component.html',
   styleUrls: ['./flight-card.component.css'],
 })
